@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Users, Mail, Clock, AlertCircle, CheckCircle2, XCircle, Send, UserPlus } from "lucide-react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 const LeadList = () => {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +16,7 @@ const LeadList = () => {
     const fetchLeads = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/leads');
+        const response = await fetch(`${API_URL}/api/leads`);
         if (response.ok) {
           const data = await response.json();
           setLeads(data.data ?? []);
